@@ -1,0 +1,9 @@
+[submodule "api"]
+	path = api
+	url = https://github.com/garethfuller/rails-api-template.git
+[submodule "rails-api-template"]
+	path = rails-api-template
+	url = https://github.com/garethfuller/rails-api-template.git
+[submodule "web"]
+	path = web
+	url = https://github.com/garethfuller/nuxt-template.git
