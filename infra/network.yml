@@ -10,18 +10,18 @@ metadata:
 spec:
   tls:
   - hosts:
-    - <FRONT_DOMAIN>
+    - <WEB_DOMAIN>
     - <API_DOMAIN>
     secretName: <NAMESPACE>-tls
   rules:
-  - host: <FRONT_DOMAIN>
+  - host: <WEB_DOMAIN>
     http:
       paths:
       - path: /(.*)
         pathType: Prefix
         backend:
           service: 
-            name: front
+            name: web
             port: 
               number: 3000
   - host: <API_DOMAIN>

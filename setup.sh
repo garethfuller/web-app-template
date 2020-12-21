@@ -5,7 +5,7 @@ git submodule init && git submodule update
 echo "✅ Submodules initiated"
 
 # Remove initial git remotes
-git remote remove origin && (cd ./api && git remote remove origin) && (cd ./front && git remote remove origin)
+git remote remove origin && (cd ./api && git remote remove origin) && (cd ./web && git remote remove origin)
 echo "✅ Removed initial git remotes"
 
 # Add new api git remote
@@ -19,15 +19,15 @@ elif [[ -n "$api_remote" ]]; then
   echo "✅ Set api git remote to: $api_remote"
 fi
 
-# Add new front git remote
-echo "Input new front remote: (enter to skip)"
-read front_remote
-if [[ -z "$front_remote" ]]; then
-  echo "🚫 Skipped setting front remote"
-elif [[ -n "$front_remote" ]]; then
-  (cd ./front && git remote add origin $front_remote)
-  sed -i '' -e 's/# //g' ./front/.github/workflows/production.yml
-  echo "✅ Set front git remote to: $front_remote"
+# Add new web git remote
+echo "Input new web remote: (enter to skip)"
+read web_remote
+if [[ -z "$web_remote" ]]; then
+  echo "🚫 Skipped setting web remote"
+elif [[ -n "$web_remote" ]]; then
+  (cd ./web && git remote add origin $web_remote)
+  sed -i '' -e 's/# //g' ./web/.github/workflows/production.yml
+  echo "✅ Set web git remote to: $web_remote"
 fi
 
 # Set rails app name
@@ -44,11 +44,11 @@ sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./api/.github/workflows/production.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./api/.github/workflows/rollback.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./api/deployment.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./api/Dockerfile
-sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./front/deployment.yml
-sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./front/Dockerfile
-sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./front/package.json
-sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./front/.github/workflows/production.yml
-sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./front/.github/workflows/rollback.yml
+sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./web/deployment.yml
+sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./web/Dockerfile
+sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./web/package.json
+sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./web/.github/workflows/production.yml
+sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./web/.github/workflows/rollback.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./infra/access.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./infra/namespace.yml
 sed -i '' -e "s/<NAMESPACE>/$namespace/g" ./infra/network.yml
@@ -60,8 +60,8 @@ echo "Input DockerHub username:"
 read docker_username
 sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./api/.github/workflows/production.yml
 sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./api/.github/workflows/rollback.yml
-sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./front/.github/workflows/production.yml
-sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./front/.github/workflows/rollback.yml
+sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./web/.github/workflows/production.yml
+sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./web/.github/workflows/rollback.yml
 echo "✅ Set DockerHub username to: $namespace"
 
 # Set API domain
@@ -69,18 +69,18 @@ echo "Input API domain (e.g. api.app.com):"
 read api_domain
 sed -i '' -e "s/<API_DOMAIN>/$api_domain/g" ./api/.github/workflows/production.yml
 sed -i '' -e "s/<API_DOMAIN>/$api_domain/g" ./api/.github/workflows/rollback.yml
-sed -i '' -e "s/<API_DOMAIN>/$api_domain/g" ./front/deployment.yml
+sed -i '' -e "s/<API_DOMAIN>/$api_domain/g" ./web/deployment.yml
 sed -i '' -e "s/<API_DOMAIN>/$api_domain/g" ./infra/network.yml
 echo "✅ Set API domain to: $api_domain"
 
-# Set front domain
-echo "Input frontend domain (e.g. app.com):"
-read front_domain
-sed -i '' -e "s/<FRONT_DOMAIN>/$front_domain/g" ./front/.github/workflows/production.yml
-sed -i '' -e "s/<FRONT_DOMAIN>/$front_domain/g" ./front/.github/workflows/rollback.yml
-sed -i '' -e "s/<FRONT_DOMAIN>/$front_domain/g" ./infra/network.yml
-sed -i '' -e "s/<FRONT_DOMAIN>/$front_domain/g" ./api/deployment.yml
-echo "✅ Set frontend domain to: $front_domain"
+# Set web domain
+echo "Input webend domain (e.g. app.com):"
+read web_domain
+sed -i '' -e "s/<WEB_DOMAIN>/$web_domain/g" ./web/.github/workflows/production.yml
+sed -i '' -e "s/<WEB_DOMAIN>/$web_domain/g" ./web/.github/workflows/rollback.yml
+sed -i '' -e "s/<WEB_DOMAIN>/$web_domain/g" ./infra/network.yml
+sed -i '' -e "s/<WEB_DOMAIN>/$web_domain/g" ./api/deployment.yml
+echo "✅ Set webend domain to: $web_domain"
 
 # Build images
 echo "Building docker images..."

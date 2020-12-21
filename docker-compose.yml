@@ -24,14 +24,14 @@ services:
       - 5000:3000
     depends_on: 
       - db
-  front:
+  web:
     build:
-      context: ./front
+      context: ./web
       dockerfile: Dockerfile.dev
     restart: always
     command: yarn run dev
     volumes: 
-      - ./front:/app
+      - ./web:/app
       - /app/node_modules
     ports:
       - 3000:3000
