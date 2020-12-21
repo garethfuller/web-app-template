@@ -8,6 +8,16 @@ echo "✅ Submodules initiated"
 git remote remove origin && (cd ./api && git remote remove origin) && (cd ./web && git remote remove origin)
 echo "✅ Removed initial git remotes"
 
+# Add new app git remote
+echo "Input new app remote: (enter to skip)"
+read app_remote
+if [[ -z "$app_remote" ]]; then
+  echo "🚫 Skipped setting app remote"
+elif [[ -n "$app_remote" ]]; then
+  git remote add origin $app_remote
+  echo "✅ Set app git remote to: $app_remote"
+fi
+
 # Add new api git remote
 echo "Input new api remote: (enter to skip)"
 read api_remote
