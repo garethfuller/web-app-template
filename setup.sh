@@ -72,7 +72,7 @@ sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./api/.github/workflows/pr
 sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./api/.github/workflows/rollback.yml
 sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./web/.github/workflows/production.yml
 sed -i '' -e "s/<DOCKER_USERNAME>/$docker_username/g" ./web/.github/workflows/rollback.yml
-echo "✅ Set DockerHub username to: $namespace\n"
+echo "✅ Set DockerHub username to: $docker_username\n"
 
 # Set API domain
 echo "Input API domain (e.g. api.app.com):"
