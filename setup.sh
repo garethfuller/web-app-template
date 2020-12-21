@@ -99,7 +99,7 @@ echo "✅ Images built\n"
 
 # Setup dev database
 echo "Setting up development database..."
-docker-compose run -d db && docker-compose run api rails db:setup
+docker-compose run api rails db:setup
 echo "✅ Development database setup\n"
 
 echo "🎉 Setup complete!"
