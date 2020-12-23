@@ -35,6 +35,8 @@ Add these three secrets to the web and api Github repos:
 - DOCKER_USERNAME
 - KUBECONFIG
 
+Ensure that the `KUBECONFIG` secret is a service account with deployment permissions. See the [/infra/access.yml](/infra/access.yml) file for details on the role binding.
+
 Add DNS records for domains pointing to Kubernetes Ingress load balancer IP.
 
 Push all changes to api and web repos, this will trigger deployments to K8s.
